@@ -18,6 +18,12 @@ try:
 except ImportError:
     pass
 
+try:
+    from splinter.driver.zombie import ZombieBrowser
+    _DRIVERS['zombie'] = ZombieBrowser
+except ImportError:
+    pass
+
 
 def Browser(driver_name='firefox', *args, **kwargs):
     """
