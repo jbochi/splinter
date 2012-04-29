@@ -239,7 +239,7 @@ class BaseWebDriver(DriverAPI):
         for name, value in field_values.items():
             elements = self.find_by_name(name)
             element = elements.first
-            if element['type'] == 'text':
+            if element['type'] == 'text' or element.tag_name == 'textarea':
                 element.value = value
             elif element['type'] == 'checkbox':
                 if value:
@@ -267,16 +267,13 @@ class BaseWebDriver(DriverAPI):
                 field.click()
 
     def check(self, name):
-        field = self.find_by_name(name).first
-        field.check()
+        self.find_by_name(name).first.check()
 
     def uncheck(self, name):
-        field = self.find_by_name(name).first
-        field.uncheck()
+        self.find_by_name(name).first.uncheck()
 
     def select(self, name, value):
-        element = self.find_by_xpath('//select[@name="%s"]/option[@value="%s"]' % (name, value)).first._element
-        element.click()
+        self.find_by_xpath('//select[@name="%s"]/option[@value="%s"]' % (name, value)).first._element.click()
 
     def quit(self):
         self.driver.quit()
@@ -323,6 +320,10 @@ class WebDriverElement(ElementAPI):
     @property
     def text(self):
         return self._element.text
+
+    @property
+    def tag_name(self):
+        return self._element.tag_name
 
     def fill(self, value):
         self.value = value
