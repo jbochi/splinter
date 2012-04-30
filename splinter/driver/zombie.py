@@ -52,10 +52,10 @@ class ZombieBrowser(DriverAPI):
         return self.find_by_id(name)
 
     def find_link_by_text(self, text):
-        return self.find_by_css('*:contains(%s)' % (text,))
+        return self.find_by_css('a:contains(%s)' % (text,))
 
     def find_link_by_partial_text(self, text):
-        return self.find_by_css('*:contains(%s)' % (text,))
+        return self.find_by_css('a:contains(%s)' % (text,))
 
     def find_link_by_href(self, href):
         return self.find_by_css('a[href="%s"]' % href)
