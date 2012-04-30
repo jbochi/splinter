@@ -18,3 +18,7 @@ class ZombieTest(BaseBrowserTests, unittest.TestCase):
 
     def setUp(self):
         self.browser.visit(EXAMPLE_APP)
+
+    @classmethod
+    def tearDownClass(self):
+        self.browser.quit()

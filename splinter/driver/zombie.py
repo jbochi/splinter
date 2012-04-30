@@ -8,6 +8,9 @@ class ZombieBrowser(DriverAPI):
     def __init__(self, *args, **kwargs):
         self.zombie = Browser()
 
+    def quit(self):
+        self.zombie.kill()
+
     @property
     def title(self):
         return self.zombie.text("title")
