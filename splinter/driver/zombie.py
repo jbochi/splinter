@@ -9,7 +9,7 @@ class ZombieBrowser(DriverAPI):
         self.zombie = Browser()
 
     def quit(self):
-        self.zombie.kill()
+        self.zombie.server.kill()
 
     @property
     def title(self):
